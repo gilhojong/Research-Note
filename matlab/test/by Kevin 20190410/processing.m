@@ -13,7 +13,12 @@ raw=openmat(info.path);
 % info.path='C:\Users\user\Documents\MATLAB\qtm test\s1s2tr.mat';
 
 event.event_force=getstep(raw);
-event.event_marker=round(getstep(raw)/10);
+event.event_marker=round(getstep(raw)/10); % getstep에서 나온 e1 이 1이면 round(x/10) 했을때 0이 되므로 이벤트를 못잡음 / 아래삽입
+
+if event.event_marker(1,1) == 0;
+   event.event_marker(1,1) == 1;
+end
+
 info.marker_name=fieldnames(raw.marker);
 info.angle_name=fieldnames(raw.angle);
 
